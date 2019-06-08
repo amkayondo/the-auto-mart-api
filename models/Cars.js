@@ -1,25 +1,8 @@
+const carModel = require('./app');
 
 const cars = [
-    {
-        id: 01,
-        created_on: new Date(),
-        state: "new",
-        status: "available",
-        price: 100000,
-        manufacturer: "Toyota",
-        model: "VX 2019",
-        body_type: "car"
-    },
-    {
-        id: 02,
-        created_on: new Date(),
-        state: "used",
-        status: "sold",
-        price: 134000,
-        manufacturer: "Tesla",
-        model: "MIO 2019",
-        body_type: "truck"
-    }
+    carModel(01, 01, new Date, "new", "sold", 24000, "tesla", "VXC", "car"),
+    carModel(41, 34, new Date, "used", "available", 2400340, "tesla", "QW 2019", "track")
 ]
 
 module.exports = cars;
