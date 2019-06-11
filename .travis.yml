@@ -1,7 +1,8 @@
+sudo: false
 language: node_js
 
 node_js:
-  - "node"
+  - node
 env:
   global: CC_TEST_REPORTER_ID= 301e1ce0d19c02d781ba92988f454003ec230f2da4a6d5f3b4c710b41f460ea5
 install:
@@ -10,11 +11,8 @@ cache:
   directories:
     - "node_modules"
 script:
-  - npm test
-  - npm run coverage
+
+  - npm run test:coveralls
 after_success:
-    - npm run coverage
-    - npm install codeclimate-test-reporter
-    - codeclimate-test-reporter < coverage/lcov.info
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - npm run coveralls 
+
