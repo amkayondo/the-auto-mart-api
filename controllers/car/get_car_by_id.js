@@ -6,7 +6,6 @@ const get_car_by_id = (req, res) =>{
     if (car_db.some(
         car => car.id === _req
     )) {
-        
         const _data = car_db.filter(
         car => car.id === _req)
         res.json({
