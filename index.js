@@ -1,4 +1,4 @@
-const PORT = require('./helpers/config');
+const PORT = process.env.PORT || 7000;
 const express = require('express');
 const car_router = require('./routes/cars');
 const admin_router = require('./routes/admin');
@@ -11,6 +11,8 @@ app.get('/', (req, res)=>{
         message: "Navigate to /api/v1 for v1"
     });
 });
+
+
 
 app.use('/api/v1', admin_router);
 app.use('/api/v1', car_router);
