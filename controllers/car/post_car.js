@@ -14,7 +14,10 @@ const post_car = (req, res) =>{
         body_type : req.body.body_type
     }
     car_db.push(new_data);
-    res.json(car_db)
+    res.json({
+        status: 200,
+        data: car_db
+    })
 }
 
 module.exports = post_car;
