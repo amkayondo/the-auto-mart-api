@@ -1,10 +1,6 @@
-sudo: false
 language: node_js
-
 node_js:
   - node
-env:
-  global: CC_TEST_REPORTER_ID= 301e1ce0d19c02d781ba92988f454003ec230f2da4a6d5f3b4c710b41f460ea5
 install:
   - npm install
 cache:
