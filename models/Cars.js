@@ -1,4 +1,17 @@
-const carModel = require('./app');
+const carModel = (id, owner, created_on ,state, status
+    ,price, manufacturer, model, body_type) => {
+        return {
+            id,
+            owner, 
+            created_on,
+            state, 
+            status,
+            price, 
+            manufacturer, 
+            model, 
+            body_type
+      }}
+
 
 const cars = [
     carModel(01, 01, new Date, "new", "sold", 24000, "tesla", "VXC", "car"),
