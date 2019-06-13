@@ -8,6 +8,13 @@ const order_router = require('./routes/orders');
 const app = express();
 app.use(express.json())
 
+app.get('/api/v1', (req, res) =>{
+    res.json({
+        status: 200,
+        message: "Welcome to Auto Mart Api V1"
+    })
+});
+
 app.get('/', (req, res)=>{ 
     res.json({
         message: "Navigate to /api/v1 for v1"
