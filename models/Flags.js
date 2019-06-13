@@ -15,3 +15,5 @@ const flag_db = [
     flagModel(09, 95, new Date(), "wrong order", "low"),
     flagModel(23, 02, new Date(), "damaged", "high")
 ]
+
+module.exports = flag_db;

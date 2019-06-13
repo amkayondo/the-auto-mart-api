@@ -6,6 +6,7 @@ const delete_car = (req, res) =>{
     const x = car_db.some(find);
     if (x) {
         const _data = car_db.filter(car => car.id !== _req)
+        car_db.pop(_data)
         res.json({
          status: 200,
          message: 'car deleted',
@@ -13,7 +14,10 @@ const delete_car = (req, res) =>{
         }   
         );
     } else {
-
+        res.status(400).json({
+            status: 400,
+            error: `No car with ID ${_req}`
+        })
      }
 }
 
