@@ -11,7 +11,7 @@ cache:
   directories:
     - "node_modules"
 script:
-  - npm run test:coveralls
+  - npm run test
 after_success:
   - npm run coveralls 
 
