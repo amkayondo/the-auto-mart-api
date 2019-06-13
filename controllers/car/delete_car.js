@@ -9,8 +9,7 @@ const delete_car = (req, res) =>{
         car_db.pop(_data)
         res.json({
          status: 200,
-         message: 'car deleted',
-         data : _data
+         message: 'car deleted'
         }   
         );
     } else {
