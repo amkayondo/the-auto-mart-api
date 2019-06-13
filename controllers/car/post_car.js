@@ -1,5 +1,4 @@
 const car_db = require('../../models/Cars');
-const carModel = require('../../models/app');
 
 const post_car = (req, res) =>{
     const new_data = req.body = 
