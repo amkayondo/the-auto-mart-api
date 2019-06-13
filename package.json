@@ -26,7 +26,7 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "mocha tests/ --timeout 1000 --exit",
+    "test": "nyc mocha tests/ --timeout 1000 --exit",
     "start": "node index.js",
     "coverage": "nyc --reporter=lcov npm run test",
     "coveralls": "nyc report --reporter=lcov | coveralls"
