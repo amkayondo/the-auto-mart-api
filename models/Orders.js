@@ -1,11 +1,14 @@
 // Order Model
-const orderModel = (id, buyer, car_id, amount, status) => {
-    return {
+const orderModel = (id, car_id,created_on, status, price,
+                    price_offered) => 
+    {
+        return {
         id,
-        buyer,
         car_id,
-        amount,
-        status
+        created_on,
+        status,
+        price,
+        price_offered
     }
 } 
 

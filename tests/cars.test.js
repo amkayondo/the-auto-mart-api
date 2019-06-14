@@ -17,7 +17,7 @@ describe("Cars", ()=>{
         });
         it('should return all cars', (done)=>{
             chai.request(sever)
-            .get('/api/v1/car')
+            .get('/api/v1/car') 
             .end((err, res)=>{
                 res.should.have.status(200);
             })
@@ -72,6 +72,14 @@ describe('CRUD OPERATIONS', ()=>{
                 res.should.have.status(200);
             })
             done()
-    } 
-    )
+    })
+
+    it('should get unsold cars from DB', (done) =>{
+        chai.request(sever)
+            .delete('/api/v1/car?status=available')
+            .end((err, res)=>{
+                res.should.have.status(200);
+            })
+            done()
+    })
 })

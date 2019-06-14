@@ -2,18 +2,14 @@ const car_db = require('../../models/Cars');
 
 const get_unsold_cars = (req, res)=>{
     
-    // get status value from user
-    const x = (req.query.status);
-    
-    // if not status
-    if(x === "available" ){
+    if(req.query.status === "available"){
         const car_x = car_db.filter(
-            car => car.status === x
+            car => car.status === req.query.status
             );
 
         res.json({
             status: 200,
-            data: car_x
+            data: req.query.status
         })
 
     } else res.json({
@@ -21,6 +17,6 @@ const get_unsold_cars = (req, res)=>{
         error: "You are not authorized to access this resource"
     
     })
-}
+} 
 
 module.exports = get_unsold_cars;
