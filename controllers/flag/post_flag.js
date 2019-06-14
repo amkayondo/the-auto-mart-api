@@ -2,7 +2,6 @@ const flag_db = require('../../models/Flags');
 const Joi = require('@hapi/joi');
 
 const schema = {
-    id: Joi.number().integer().min(1).required(),
     car_id: Joi.number().integer().min(1).required(),
     reason: Joi.string().min(30).required(),
     description: Joi.string().min(30).required()
@@ -26,7 +25,8 @@ const post_flag = (req, res) =>{
     flag_db.push(new_order)
     res.json({
            status: 200,
-           data: flag_db
+           message: "Flag posted",
+           data: new_order
     })
     
    

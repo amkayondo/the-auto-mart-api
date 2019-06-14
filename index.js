@@ -1,7 +1,7 @@
 const PORT = process.env.PORT || 4000;
 const express = require('express');
 const car_router = require('./routes/cars');
-const admin_router = require('./routes/admin');
+const admin_car_router = require('./routes/admin');
 const user_router = require('./routes/user');
 const order_router = require('./routes/orders');
 const flag_router = require('./routes/flags');
@@ -24,7 +24,7 @@ app.get('/', (req, res)=>{
 
 
 
-app.use('/api/v1', admin_router)
+app.use('/api/v1/admin', admin_car_router)
 app.use('/api/v1', car_router);
 app.use('/api/v1', user_router);
 app.use('/api/v1', order_router);
