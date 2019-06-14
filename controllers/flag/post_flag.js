@@ -3,7 +3,7 @@ const Joi = require('@hapi/joi');
 
 const schema = {
     car_id: Joi.number().integer().min(1).required(),
-    reason: Joi.string().min(30).required(),
+    reason: Joi.string().min(10).required(),
     description: Joi.string().min(30).required()
 }
 

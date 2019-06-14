@@ -6,7 +6,7 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe("Cars", ()=>{
+describe("Tests for Cars, Orders and Flags ", ()=>{
         it('should return index route', (done)=>{
             chai.request(sever)
             .get('/')
@@ -64,6 +64,21 @@ describe('CRUD OPERATIONS', ()=>{
         model : "XFDV 23", 
         body_type : "truck"
     }]
+    flags = [
+        {
+            "car_id": 3,
+            "reason": "Has",
+            "description": "The car's window is broken which brings in water when it rains"
+        }
+    ]
+    orders = [
+        {
+    
+            "car_id": 2,
+	        "price_offered": 2494934
+
+         }
+    ]
     it('should add car to DB', (done) =>{
         chai.request(sever)
             .post('/api/v1/car')
@@ -76,10 +91,47 @@ describe('CRUD OPERATIONS', ()=>{
 
     it('should get unsold cars from DB', (done) =>{
         chai.request(sever)
-            .delete('/api/v1/car?status=available')
+            .get('/api/v1/car?status=available')
             .end((err, res)=>{
                 res.should.have.status(200);
             })
             done()
     })
+    it('should get car by id', (done) =>{
+        chai.request(sever)
+            .get('/api/v1/car/1')
+            .end((err, res)=>{
+                res.should.have.status(200);
+            })
+            done()
+    })
+    it('should throw an error if doesnt meet validations to post flag', (done) =>{
+        chai.request(sever)
+            .post('/api/v1/flag')
+            .send(flags[flags])
+            .end((err, res)=>{
+                res.should.have.status(400);
+            })
+            done()
+    })
+//     it('should post flag', (done) =>{
+//         chai.request(sever)
+//             .post('/api/v1/flag')
+//             .send(flags[flags])
+//             .end((err, res)=>{
+//                 res.should.have.status(200);
+//             })
+//             done()
+//     })
+    
+// it('should post an order', (done) =>{
+//     chai.request(sever)
+//         .post('/api/v1/order')
+//         .send(orders[orders])
+//         .end((err, res)=>{
+//             res.should.have.status(200);
+//         })
+//         done()
+// })
+    
 })

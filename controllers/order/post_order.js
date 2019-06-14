@@ -1,6 +1,8 @@
 const order_db = require('../../models/Orders');
 const Joi = require('@hapi/joi');
 
+
+
 const post_schema = {
     car_id: Joi.number().integer().min(1).required(),
     price_offered: Joi.number().integer().min(6).required()
