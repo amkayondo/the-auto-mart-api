@@ -76,7 +76,7 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 [https://amkayondo.github.io/auto-mart/](https://amkayondo.github.io/auto-mart/)
 
 ## **ApI**
-[https://open-auto-mart.herokuapp.com/api/v1/](https://open-auto-mart.herokuapp.com/api/v1/)
+[https://automart-one.herokuapp.com/api/v1/](https://automart-one.herokuapp.com/api/v1/)
 
 ## **Author**
 **Kayondo Edward**
