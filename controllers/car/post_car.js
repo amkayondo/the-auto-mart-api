@@ -8,7 +8,7 @@ const Joi = require('@hapi/joi')
        manufacturer: Joi.string().min(3).required(),
        model: Joi.string().min(4).required(),
        body_type: Joi.string().min(3).required()
-
+ 
    }
 
 

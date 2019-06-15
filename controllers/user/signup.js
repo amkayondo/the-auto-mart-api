@@ -21,7 +21,6 @@ const userSignup = (req, res) =>{
                     email : req.body.email,
                     first_name: req.body.first_name,
                     last_name : req.body.last_name,
-                    password : hash,
                     admin: false
                         }
                     
@@ -39,7 +38,6 @@ const userSignup = (req, res) =>{
                    token,
                     status: 200,
                     data: new_user,
-                    rek: user_db
                 })
                 
                 }
