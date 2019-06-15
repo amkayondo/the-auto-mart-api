@@ -1,13 +1,12 @@
 const order_db = require('../../models/Orders');
 const Joi = require('@hapi/joi');
-
-
+const uuid = require('uuid');
 
 const post_schema = {
-    car_id: Joi.number().integer().min(1).required(),
     price_offered: Joi.number().integer().min(6).required()
 }
 const postOrder = (req, res) =>{
+    const user_id = req.user.id; 
     const _result = Joi.validate(req.body, post_schema);
     if(_result.error){
         return res.status(400).json({
@@ -16,8 +15,9 @@ const postOrder = (req, res) =>{
     })}
 
     const new_order = req.body = {
-        id: order_db.length + 1,
-        car_id: req.body.car_id,
+        id: uuid.v4(),
+        buyer: user_id,
+        car_id: uuid.v4(),
         created_on: new Date(),
         status: "pending",
         price: 120000,
