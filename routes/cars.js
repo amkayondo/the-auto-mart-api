@@ -15,7 +15,7 @@ car_router.get('/car', get_unsold_cars);
 car_router.get('/car/:id',   get_car_by_ID);
 car_router.post('/car', auth, post_car);
 car_router.patch('/car/:id/price',  auth, update_car);
-car_router.delete('/car/:id', auth, delete_car);
+car_router.delete('/car/:id', auth, delete_car); 
 
 
 module.exports = car_router;

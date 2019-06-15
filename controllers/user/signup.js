@@ -32,7 +32,7 @@ const userSignup = (req, res) =>{
                     admin: false
                 }
                 const token = jwt.sign(payload, 'JKASDBAKDAJSDBJS', { expiresIn: '24hrs'})
-                res.header('auth-token', token)
+                res.header('Authorization', token)
                 user_db.push(new_user)
                 res.json({
                    token,

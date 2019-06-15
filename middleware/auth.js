@@ -5,7 +5,7 @@ dotenv.config();
 
 const _auth = (req, res, next) =>{
     try{
-        const _header = req.headers.authorization;
+        const _header = req.header('Authorization');
         if(!_header || _header === ""){
             return res.status(401).json({
                 status: 401,

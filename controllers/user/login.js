@@ -22,7 +22,7 @@ const userLogin = (req, res) =>{
         if(!x_password) return res.status(401).json('Incorrect Password')
         // get token
         const token = jwt.sign({email: x_user.email}, process.env.SECRETE_KEY);
-        res.header('auth', token).json({
+        res.header('Authorization', token).json({
             status: 200,
             message: 'You are successfully loggedin',
             token,
