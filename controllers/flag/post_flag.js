@@ -1,8 +1,9 @@
 const flag_db = require('../../models/Flags');
 const Joi = require('@hapi/joi');
+const uuid = require('uuid');
+
 
 const schema = {
-    car_id: Joi.number().integer().min(1).required(),
     reason: Joi.string().min(10).required(),
     description: Joi.string().min(30).required()
 }
@@ -17,8 +18,8 @@ const post_flag = (req, res) =>{
        })
    } 
     const new_order = req.body = {
-           id: flag_db.length + 1,
-           car_id: req.body.car_id,
+           id: uuid.v4(),
+           car_id: uuid.v4(),
            reason: req.body.reason,
            description: req.body.description
             }

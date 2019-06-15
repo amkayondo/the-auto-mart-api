@@ -7,12 +7,12 @@ const get_unsold_cars = (req, res)=>{
     if(x === "available" ){
         
         const car_x = car_db.filter(car => car.status === x);
-        res.json({
+        res.status(200).json({
             status: 200,
             data: car_x
         })
 
-    } else res.json({
+    } else resstatus(400).json({
         status: 400,
         message: "You are not authorized to access this route"
     })

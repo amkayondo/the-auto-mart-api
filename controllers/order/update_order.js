@@ -1,8 +1,11 @@
 const order_db = require('../../models/Orders');
 
 const postOrder = (req, res) =>{
-    // validate
+   const user_id = req.user.id; 
    const _order = parseInt(req.params.order_id);
+
+   const found = order_db.find(c => c.id === req.params.id && c.owner === user_id);
+
    const got_order = order_db.find(x => x.id === _order);
    if(got_order){ 
        const updOrder = req.body; 
