@@ -8,6 +8,7 @@ const get_unsold_cars = (req, res)=>{
         
         const car_x = car_db.filter(car => car.status === x);
         res.status(200).json({
+            
             status: 200,
             data: car_x
         })
