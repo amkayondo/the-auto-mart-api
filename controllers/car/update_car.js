@@ -16,7 +16,7 @@ const update_car_ = (req, res) =>{
     }
     else{
         res.status(400).json({
-            error: "not owner"
+            error: "You dont own this product"
         })
     }
 }

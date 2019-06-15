@@ -12,7 +12,7 @@ const _auth = (req, res, next) =>{
                 error : "Unauthorized"
             })
         }
-        const _token = jwt.verify(_header, process.env.SECRETE_KEY)
+        const _token = jwt.verify(_header, 'JKASDBAKDAJSDBJS')
         req.user = _token;
 
 
