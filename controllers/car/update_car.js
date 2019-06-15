@@ -2,8 +2,7 @@ const car_db = require('../../models/Cars');
 
  
 const update_car_ = (req, res) =>{
-    const user_id = req.user.id; 
-
+    const user_id = req.user.id;
     
     const found = car_db.findIndex(c => c.id === req.params.id && c.owner === user_id);
     
