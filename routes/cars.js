@@ -10,7 +10,7 @@ const _admin = require('../middleware/admin');
 const get_all_cars = require('../controllers/car/get_all_cars');
 
 // GET UNSOLD CARS
-car_router.get('/car', auth, _admin, get_all_cars);
+car_router.get('/admin/car', auth, get_all_cars);
 car_router.get('/car', get_unsold_cars);
 car_router.get('/car/:id',   get_car_by_ID);
 car_router.post('/car', auth, post_car);
