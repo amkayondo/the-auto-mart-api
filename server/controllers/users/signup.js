@@ -1,50 +1,39 @@
-/* eslint-disable no-multi-assign */
-import bcrypt from 'bcrypt';
-// eslint-disable-next-line no-unused-vars
-import dotenv from 'dotenv';
-import uuid from 'uuid';
-import jwt from 'jsonwebtoken';
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
+import Joi from '@hapi/joi';
+import pool from '../../config/db';
+import '@babel/polyfill';
+import Database from '../db';
 
-// eslint-disable-next-line no-unused-vars
-const createAccount = (req, res) => {
-  bcrypt.hash(req.body.password, 10,
-    (err, hash) => {
-      if (err) {
-        res.status(500).json(
-          {
-            error: err,
-          },
-        );
-      } else {
-        // eslint-disable-next-line camelcase
-        const new_user = req.body = {
-          id: uuid.v4(),
-          email: req.body.email,
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          password: hash,
-          admin: false,
-        };
-
-        const payload = {
-          id: uuid.v4(),
-          email: req.body.email,
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          admin: false,
-        };
-        // eslint-disable-next-line no-undef
-        const token = jwt.sign(payload, 'JKASDBAKDAJSDBJS', { expiresIn: '24hrs' });
-        res.header('auth-token', token);
-        // user_db.push(new_user);
-        res.json({
-          token,
-          status: 200,
-          data: new_user,
-        });
-      }
-    });
+const theSchema = {
+  first_name: Joi.string().min(5).required(),
+  last_name: Joi.string().min(5).required(),
+  email: Joi.string().min(12).required(),
+  address: Joi.string().min(10).required(),
+  password: Joi.string().min(8).required(),
 };
 
+const createAccount = async (req, res) => {
+  const result = Joi.validate(req.body, theSchema);
+  if (result.error) {
+    return res.status(400).json({ status: 400, error: result.error.details[0].message });
+  }
+
+  const values = [
+    req.body.first_name,
+    req.body.last_name,
+    req.body.email,
+    req.body.address,
+    req.body.password,
+  ];
+
+  try {
+    const db = new Database();
+    const user = await db.addUser(values);
+    return res.status(201).send({ status: 201, data: user.rows[0] });
+  } catch (error) {
+    return res.status(400).send({ status: 400, error: error.detail });
+  }
+};
 
 export default createAccount;

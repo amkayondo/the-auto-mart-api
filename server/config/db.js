@@ -1,4 +1,3 @@
-// File contains configurations for database
 import { Pool } from 'pg';
 
 const pool = new Pool({
