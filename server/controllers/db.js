@@ -20,8 +20,7 @@ class Database {
   }
 
   createAllTables() {
-    const tables = `CREATE TABLE IF NOT EXISTS
-    users(
+    const tables = `CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY,
         first_name VARCHAR(24) NOT NULL,
         last_name VARCHAR(24) NOT NULL,
