@@ -1,11 +1,9 @@
 import express from 'express';
-// import createAccount from '../controllers/users/signup';
+import createAccount from '../controllers/users/signup';
 
 const carRouter = express.Router();
 
 // CAR ROUTES
-carRouter.get('/user', (req, res) => {
-  res.send('hello');
-});
+carRouter.post('/user', createAccount);
 
 export default carRouter;
