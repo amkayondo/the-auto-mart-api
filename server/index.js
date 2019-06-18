@@ -1,6 +1,6 @@
 import express from 'express';
 import PORT from './helpers/config';
-import user from './routes/user';
+import carRouter from './routes/user';
 import pool from './config/db';
 import Database from './controllers/db';
 
@@ -23,7 +23,7 @@ app.get('/test', (req, res) => {
 });
 
 // api routes
-app.use('/api/v2', user);
+app.use('/', carRouter);
 
 const db = new Database();
 db.createAllTables();
