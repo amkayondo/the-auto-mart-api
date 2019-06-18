@@ -16,10 +16,7 @@ const theSchema = {
 const createAccount = async (req, res) => {
   const result = Joi.validate(req.body, theSchema);
   if (result.error) {
-    return res.status(400).json({
-      status: 400,
-      error: result.error.details[0].message,
-    });
+    return res.status(400).json({ status: 400, error: result.error.details[0].message });
   }
 
   const values = [
@@ -33,14 +30,9 @@ const createAccount = async (req, res) => {
   try {
     const db = new Database();
     const user = await db.addUser(values);
-    console.log(user);
-    return res.status(201).send({
-      data: user.rows[0],
-    });
+    return res.status(201).send({ status: 201, data: user.rows[0] });
   } catch (error) {
-    return res.status(400).send({
-      error: error.detail,
-    });
+    return res.status(400).send({ status: 400, error: error.detail });
   }
 };
 
