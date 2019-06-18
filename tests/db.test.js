@@ -3,7 +3,7 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server/index';
-
+// import facker from 'faker';
 
 chai.use(chaiHttp);
 
@@ -13,7 +13,7 @@ describe('DATABASE', () => {
     first_name: 'kayondo',
     last_name: 'edward',
     password: '12345',
-    email: 'kayondo@gmial.com',
+    email: 'kdhskdhskd@gmial.com',
     address: 'kigali',
   };
   it('should create all database tables', () => {
