@@ -11,9 +11,7 @@ app.use(express.json());
 
 // index route
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Navigate to /api/v2 for v2',
-  });
+  res.json({ message: 'Navigate to /api/v2 for v2' });
 });
 
 app.get('/test', (req, res) => {

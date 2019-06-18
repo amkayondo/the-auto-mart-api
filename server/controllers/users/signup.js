@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 import Joi from '@hapi/joi';
-import pool from '../../config/db';
 import '@babel/polyfill';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import Database from '../db';
 
 const theSchema = {
@@ -19,18 +20,21 @@ const createAccount = async (req, res) => {
     return res.status(400).json({ status: 400, error: result.error.details[0].message });
   }
 
+  const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+
   const values = [
     req.body.first_name,
     req.body.last_name,
     req.body.email,
     req.body.address,
-    req.body.password,
+    password,
   ];
 
   try {
     const db = new Database();
     const user = await db.addUser(values);
-    return res.status(201).send({ status: 201, data: user.rows[0] });
+    const token = jwt.sign({ email: req.body.email }, 'JKASDBAKDAJSDBJS', { expiresIn: '24hr' });
+    return res.status(201).send({ status: 201, data: user.rows[0], token });
   } catch (error) {
     return res.status(400).send({ status: 400, error: error.detail });
   }
