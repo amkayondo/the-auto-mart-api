@@ -43,13 +43,12 @@
   },
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register   --timeout 100000 ./tests --exit",
-    "start": "npm run tables && cross-env ./node_modules/.bin/babel-node server/index.js",
-    "tables": "cross-env ./node_modules/.bin/babel-node ./server/models/automart_tables.js createAllTables",
+    "start": "./node_modules/.bin/babel-node server/index.js",
     "coverage": "nyc --reporter=lcov npm run test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "build": "babel server/ -d lib",
     "lint": "eslint server/",
-    "dev": "nodemon lib/index.js"
+    "dev": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",

@@ -2,6 +2,7 @@ import express from 'express';
 import PORT from './helpers/config';
 import user from './routes/user';
 import pool from './config/db';
+import Database from './controllers/db';
 
 const app = express();
 
@@ -25,6 +26,9 @@ app.get('/test', (req, res) => {
 
 // api routes
 app.use('/api/v2', user);
+
+const db = new Database();
+db.createAllTables();
 
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));

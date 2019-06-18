@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 import Joi from '@hapi/joi';
 import pool from '../../config/db';
 import '@babel/polyfill';
+import Database from '../db';
 
 const theSchema = {
   first_name: Joi.string().min(5).required(),
@@ -20,31 +22,20 @@ const createAccount = async (req, res) => {
     });
   }
 
-  const {
-    // eslint-disable-next-line no-unused-vars
-    first_name, last_name, email,
-    // eslint-disable-next-line no-unused-vars
-    address, password,
-  } = req.body;
-
-  const queryCreate = `INSERT INTO
-      users (first_name, last_name,
-        email, address, password)
-        VALUES ($1, $2, $3, $4, $5)
-        returning *`;
   const values = [
     req.body.first_name,
     req.body.last_name,
     req.body.email,
     req.body.address,
     req.body.password,
-
   ];
 
   try {
-    const { rows } = await pool.query(queryCreate, values);
+    const db = new Database();
+    const user = await db.addUser(values);
+    console.log(user);
     return res.status(201).send({
-      data: rows,
+      data: user.rows[0],
     });
   } catch (error) {
     return res.status(400).send({
