@@ -1,5 +1,5 @@
 # **the-auto-mart-api v1**
-[![Build Status](https://travis-ci.com/amkayondo/the-auto-mart-api.svg?branch=develop)](https://travis-ci.com/amkayondo/the-auto-mart-api)  [![Maintainability](https://api.codeclimate.com/v1/badges/ed2dd9d6f60c92900606/maintainability)](https://codeclimate.com/github/amkayondo/the-auto-mart-api/maintainability) [![Coverage Status](https://coveralls.io/repos/github/amkayondo/the-auto-mart-api/badge.svg?branch=develop)](https://coveralls.io/github/amkayondo/the-auto-mart-api?branch=develop)
+[![Build Status](https://travis-ci.org/amkayondo/the-auto-mart-api.svg?branch=develop)](https://travis-ci.org/amkayondo/the-auto-mart-api)  [![Maintainability](https://api.codeclimate.com/v1/badges/ed2dd9d6f60c92900606/maintainability)](https://codeclimate.com/github/amkayondo/the-auto-mart-api/maintainability) [![Coverage Status](https://coveralls.io/repos/github/amkayondo/the-auto-mart-api/badge.svg?branch=develop)](https://coveralls.io/github/amkayondo/the-auto-mart-api?branch=develop)
 
 Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers
 
