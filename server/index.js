@@ -23,7 +23,7 @@ app.get('/test', (req, res) => {
 });
 
 // api routes
-app.use('api/v2/auth/', userRouter);
+app.use('/api/v2/auth', userRouter);
 
 const db = new Database();
 db.createAllTables();
