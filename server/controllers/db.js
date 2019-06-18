@@ -1,5 +1,9 @@
 /* eslint-disable class-methods-use-this */
-import pool from '../config/db';
+import dotenv from 'dotenv';
+import pool from '../config/db_env';
+
+
+dotenv.config();
 
 class Database {
   async selectById(table, id) {
