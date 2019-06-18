@@ -14,7 +14,7 @@ const createAllTables = () => {
   );
   CREATE TABLE IF NOT EXISTS cars (
       car_id SERIAL PRIMARY KEY,
-      owner_ INTEGER REFERENCES users(id),
+      owner_ INTEGER REFERENCES users(id) ON DELETE CASCADE,
       create_on DATE NOT NULL,
       state_ VARCHAR(30) NOT NULL,
       status_ VARCHAR(30) NOT NULL,
@@ -25,14 +25,14 @@ const createAllTables = () => {
   );
   CREATE TABLE IF NOT EXISTS orders (
     order_id SERIAL PRIMARY KEY,
-    buyer INTEGER REFERENCES users(id),
+    buyer INTEGER REFERENCES users(id) ON DELETE CASCADE,
     car_id INTEGER REFERENCES cars(car_id),
     amount INTEGER NOT NULL,
     status_ VARCHAR(30) NOT NULL
 );
   CREATE TABLE IF NOT EXISTS flags (
     flag_id SERIAL PRIMARY KEY,
-    car_id INTEGER REFERENCES cars(car_id),
+    car_id INTEGER REFERENCES cars(car_id) ON DELETE CASCADE,
     create_on DATE NOT NULL,
     description VARCHAR(30) NOT NULL
 );`;

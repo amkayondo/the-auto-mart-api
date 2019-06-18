@@ -39,14 +39,14 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "test": "nyc mocha sever/tests/ --timeout 1000 --exit",
-    "start": "npm run tables && cross-env ./node_modules/.bin/babel-node index.js",
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register   --timeout 100000 ./tests --exit",
+    "start": "npm run tables && cross-env ./node_modules/.bin/babel-node server/index.js",
     "tables": "cross-env ./node_modules/.bin/babel-node ./server/models/automart_tables.js createAllTables",
     "coverage": "nyc --reporter=lcov npm run test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "build": "babel server/ -d lib",
     "lint": "eslint server/",
-    "dev" : "nodemon ./node_modules/.bin/babel-node index.js"
+    "dev" : "nodemon lib/index.js"
   },
   "repository": {
     "type": "git",

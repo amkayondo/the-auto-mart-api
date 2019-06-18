@@ -1,7 +1,7 @@
 import express from 'express';
-import PORT from './server/helpers/config';
-import user from './server/routes/user';
-import pool from './server/config/db';
+import PORT from './helpers/config';
+import user from './routes/user';
+import pool from './config/db';
 
 const app = express();
 
@@ -28,3 +28,5 @@ app.use('/api/v2', user);
 
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+
+export default app;
