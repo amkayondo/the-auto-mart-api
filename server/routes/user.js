@@ -1,9 +1,9 @@
 import express from 'express';
 import createAccount from '../controllers/users/signup';
 
-const carRouter = express.Router();
+const userRouter = express.Router();
 
 // CAR ROUTES
-carRouter.post('/signup', createAccount);
+userRouter.post('/signup', createAccount);
 
-export default carRouter;
+export default userRouter;

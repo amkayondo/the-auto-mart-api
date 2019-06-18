@@ -1,6 +1,6 @@
 import express from 'express';
 import PORT from './helpers/config';
-import user from './routes/user';
+import userRouter from './routes/user';
 import pool from './config/db';
 import Database from './controllers/db';
 
@@ -11,9 +11,7 @@ app.use(express.json());
 
 // index route
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Navigate to /api/v2 for v2',
-  });
+  res.json({ message: 'Navigate to /api/v2 for v2' });
 });
 
 app.get('/test', (req, res) => {
@@ -25,7 +23,7 @@ app.get('/test', (req, res) => {
 });
 
 // api routes
-app.use('/api/v2', user);
+app.use('api/v2/auth/', userRouter);
 
 const db = new Database();
 db.createAllTables();
