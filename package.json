@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "istanbul": "^0.4.5",
     "jsonwebtoken": "^8.5.1",
+    "make-runnable": "^1.3.6",
     "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",
     "moment": "^2.24.0",
@@ -30,6 +31,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -38,11 +40,13 @@
   },
   "scripts": {
     "test": "nyc mocha sever/tests/ --timeout 1000 --exit",
-    "start": "nodemon --exec babel-node index.js",
+    "start": "npm run tables && cross-env ./node_modules/.bin/babel-node index.js",
+    "tables": "cross-env ./node_modules/.bin/babel-node ./server/models/automart_tables.js createAllTables",
     "coverage": "nyc --reporter=lcov npm run test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "build": "babel server/ -d lib",
-    "lint": "eslint server/"
+    "lint": "eslint server/",
+    "dev" : "nodemon ./node_modules/.bin/babel-node index.js"
   },
   "repository": {
     "type": "git",
