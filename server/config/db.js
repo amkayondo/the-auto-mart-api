@@ -9,4 +9,7 @@ const pool = new Pool({
   port: 5432,
 });
 
+// eslint-disable-next-line no-console
+pool.on('connect', () => console.log('connected'));
+
 export default pool;
