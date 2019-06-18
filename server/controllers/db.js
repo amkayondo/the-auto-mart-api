@@ -1,5 +1,9 @@
 /* eslint-disable class-methods-use-this */
-import pool from '../config/db';
+import dotenv from 'dotenv';
+import pool from '../config/db_env';
+
+
+dotenv.config();
 
 class Database {
   async selectById(table, id) {
@@ -14,6 +18,17 @@ class Database {
         email,
         address,
         password) VALUES ($1, $2, $3, $4, $5) returning *;`, params);
+    return result;
+  }
+
+  async loginTheUser(email) {
+    const data = await pool.query(`SELECT * FROM users WHERE email='${email}'`);
+    return data;
+  }
+
+  async dropTables() {
+    const result = await pool.query(`DROP TABLE IF EXISTS users returning *; DROP TABLE IF EXISTS cars returning *;
+                                   DROP TABLE IF EXISTS orders returning *; DROP TABLE IF EXISTS flags returning *;`);
     return result;
   }
 

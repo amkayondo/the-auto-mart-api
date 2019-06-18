@@ -4,7 +4,10 @@ import Joi from '@hapi/joi';
 import '@babel/polyfill';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import Database from '../db';
+
+dotenv.config();
 
 const theSchema = {
   first_name: Joi.string().min(5).required(),
@@ -33,7 +36,7 @@ const createAccount = async (req, res) => {
   try {
     const db = new Database();
     const user = await db.addUser(values);
-    const token = jwt.sign({ email: req.body.email }, 'JKASDBAKDAJSDBJS', { expiresIn: '24hr' });
+    const token = jwt.sign({ email: req.body.email }, process.env.SECRETE_KEY, { expiresIn: '24hr' });
     return res.status(201).send({ status: 201, data: user.rows[0], token });
   } catch (error) {
     return res.status(400).send({ status: 400, error: error.detail });
