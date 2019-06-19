@@ -3,10 +3,9 @@
 import Joi from '@hapi/joi';
 import Car from '../../models/car';
 
+
 const createCar = async (req, res) => {
   const schema = {
-    // id: Joi.required(),
-    // status: Joi.string().min(3).required(),
     price: Joi.number().min(5).required(),
     manufacturer: Joi.string().max(30).required(),
     state: Joi.string().max(30).required(),
@@ -39,7 +38,7 @@ const createCar = async (req, res) => {
       data: car.rows[0],
     });
   } catch (error) {
-    return res.status(400).send({ status: 400, error: error.detail });
+    return res.status(400).json({ status: 400, error: result.error.details[0].message });
   }
 };
 

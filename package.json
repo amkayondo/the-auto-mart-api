@@ -55,6 +55,7 @@
   },
   "homepage": "https://github.com/amkayondo/the-auto-mart-api-v1#readme",
   "devDependencies": {
+    "babel-watch": "^7.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3"
