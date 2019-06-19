@@ -7,13 +7,13 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Database from '../db';
 
-dotenv.config(); 
+dotenv.config();
 
 const theSchema = {
   first_name: Joi.string().required(),
   last_name: Joi.string().required(),
   email: Joi.string().min(12).required(),
-  address: Joi.string().min(10).required(),
+  address: Joi.string().required(),
   password: Joi.string().min(8).required(),
 };
 
@@ -36,6 +36,7 @@ const createAccount = async (req, res) => {
   try {
     const db = new Database();
     const user = await db.addUser(values);
+    console.log(user);
     const token = jwt.sign({ email: req.body.email }, process.env.SECRETE_KEY, { expiresIn: '24hr' });
     return res.status(201).send({ status: 201, data: user.rows[0], token });
   } catch (error) {

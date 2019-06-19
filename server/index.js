@@ -7,7 +7,7 @@ const app = express();
 
 
 app.use(express.json());
-app.use(express.urlencoded()); 
+app.use(express.urlencoded());
 
 // index route
 app.get('/', (req, res) => {
@@ -17,8 +17,8 @@ app.get('/', (req, res) => {
 // api routes
 app.use('/api/v2/auth', userRouter);
 
-const db = new Database();
-db.createAllTables();
+// const db = new Database();
+// db.createAllTables();
 
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
