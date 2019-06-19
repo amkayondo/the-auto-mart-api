@@ -19,7 +19,7 @@ describe('DATABASE', () => {
   };
   it('should create all database tables', () => {
     chai.request(app)
-      .post('/api/v2/signup')
+      .post('api/v2/auth/signup')
       .send(userData)
       .end((err, res) => {
         expect(res.body).to.be.a('array');
