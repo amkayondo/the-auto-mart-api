@@ -5,7 +5,7 @@ dotenv.config();
 
 if (process.env.NODE_ENV === 'development') {
   module.exports = new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_DEV,
   });
 }
 if (process.env.NODE_ENV === 'production') {

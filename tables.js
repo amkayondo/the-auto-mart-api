@@ -1,39 +1,11 @@
-/* eslint-disable class-methods-use-this */
 import dotenv from 'dotenv';
-import pool from '../config/db_env';
+import pool from './server/config/db_env';
 
 
 dotenv.config();
 
-class Database {
-  async selectById(table, id) {
-    const result = await pool.query(`SELECT * FROM ${table} WHERE id=${id};`);
-    return result;
-  }
-
-  async addUser(params) {
-    const result = await pool.query(`INSERT INTO users (
-        first_name,
-        last_name, 
-        email,
-        address,
-        password) VALUES ($1, $2, $3, $4, $5) returning *;`, params);
-    return result;
-  }
-
-  async loginTheUser(email) {
-    const data = await pool.query(`SELECT * FROM users WHERE email='${email}'`);
-    return data;
-  }
-
-  async dropTables() {
-    const result = await pool.query(`DROP TABLE IF EXISTS users returning *; DROP TABLE IF EXISTS cars returning *;
-                                   DROP TABLE IF EXISTS orders returning *; DROP TABLE IF EXISTS flags returning *;`);
-    return result;
-  }
-
-  createAllTables() {
-    const tables = `CREATE TABLE IF NOT EXISTS users(
+const createAllTables = () => {
+  const tables = `CREATE TABLE IF NOT EXISTS users(
         id SERIAL, first_name VARCHAR(24) NOT NULL, last_name VARCHAR(24) NOT NULL,
         email VARCHAR(50) UNIQUE NOT NULL, password VARCHAR(80) NOT NULL,
         address VARCHAR(24) NOT NULL, isAdmin BOOLEAN NOT NULL DEFAULT false, PRIMARY KEY (id));
@@ -52,8 +24,9 @@ class Database {
         CREATE TABLE IF NOT EXISTS flags (
         flag_id SERIAL, car_id INTEGER REFERENCES cars(car_id) ON DELETE CASCADE,
         create_on TIMESTAMP DEFAULT NOW(), description VARCHAR(30) NOT NULL, PRIMARY KEY (flag_id));`;
-    pool.query(tables);
-  }
-}
+  pool.query(tables);
+};
 
-export default Database;
+module.exports = createAllTables;
+
+require('make-runnable');
