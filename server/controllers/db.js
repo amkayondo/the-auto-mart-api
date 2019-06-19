@@ -17,6 +17,17 @@ class Database {
     return result;
   }
 
+  async loginTheUser(email) {
+    const data = await pool.query(`SELECT * FROM users WHERE email='${email}'`);
+    return data;
+  }
+
+  async dropTables() {
+    const result = await pool.query(`DROP TABLE IF EXISTS users returning *; DROP TABLE IF EXISTS cars returning *;
+                                   DROP TABLE IF EXISTS orders returning *; DROP TABLE IF EXISTS flags returning *;`);
+    return result;
+  }
+
   createAllTables() {
     const tables = `CREATE TABLE IF NOT EXISTS users(
         id SERIAL, first_name VARCHAR(24) NOT NULL, last_name VARCHAR(24) NOT NULL,
