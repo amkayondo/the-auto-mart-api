@@ -25,7 +25,7 @@ describe('DATABASE', () => {
     password: '1234567s8',
     email: `${email}`,
   };
-  it('should create all database tables', () => {
+  it('should signup', () => {
     chai.request(app)
       .post('api/v2/auth/signup')
       .send(userData)
