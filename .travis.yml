@@ -1,14 +1,16 @@
 language: node_js
 node_js:
   - node
-before_install:
-  - psql -c 'create database auto_api;' -U postgres
 install:
   - npm install
 cache:
   directories:
     - "node_modules"
+services:
+  - postgresql
+
 before_script:
+  - psql -c 'create database auto_api;' -U postgres
   - cross-env NODE_ENV=test ./node_modules/.bin/babel-node tables.js createAllTables
 script:
   - npm run test
