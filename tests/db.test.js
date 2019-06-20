@@ -26,36 +26,40 @@ describe('USER', () => {
     password: '1234567s8',
     email: `${email}`,
   };
-  it('should signup', () => {
+  it('should signup', (done) => {
     chai.request(app)
       .post('api/v2/auth/signup')
       .send(userData)
       .end((err, res) => {
         expect(res.status).to.be.eq(201);
+        done();
       });
   });
-  it('should enable user to login', () => {
+  it('should enable user to login', (done) => {
     chai.request(app)
       .post('api/v2/auth/signin')
       .send(lgData)
       .end((err, res) => {
         expect(res.body).to.be.a('array');
         expect(res.status).to.be.eq(201);
+        done();
       });
   });
-  it('should give an error if password is inavlid', () => {
+  it('should give an error if password is inavlid', (done) => {
     chai.request(app)
       .post('api/v2/auth/signin')
       .send(inavlidPassword)
       .end((err, res) => {
         expect(res.status).to.be.eq(400);
+        done();
       });
   });
-  it('should return index message on /', () => {
+  it('should return index message on /', (done) => {
     chai.request(app)
       .get('/')
       .end((err, res) => {
         expect(res.status).to.be.eq(200);
+        done();
       });
   });
 });
@@ -70,7 +74,7 @@ describe('CARS', () => {
     model: 'VB 2019',
     body_type: 'car',
   };
-  it('should create a car', () => {
+  it('should create a car', (done) => {
     chai.request(app)
       .post('/api/v2/car')
       .send(carData)
@@ -78,6 +82,7 @@ describe('CARS', () => {
       .end((err, res) => {
         expect(res.status).to.be.eq(200);
         expect(res.body).to.be('array');
+        done();
       });
   });
 });
