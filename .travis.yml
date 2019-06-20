@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - node
 before_install:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database auto_api;' -U postgres
 install:
   - npm install
 cache:
