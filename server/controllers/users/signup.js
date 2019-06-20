@@ -36,14 +36,10 @@ const createAccount = async (req, res) => {
     password,
   ];
 
-  try {
-    const db = new Database();
-    const user = await db.addUser(values);
-    const token = auth.createToken({ email: req.body.email, id: user.rows.id });
-    return res.status(201).send({ status: 201, message: 'Account successfully created', token });
-  } catch (error) {
-    return res.status(400).send({ status: 400, error: 'Something went wrong' });
-  }
+  const db = new Database();
+  const user = await db.addUser(values);
+  const token = auth.createToken({ email: req.body.email, id: user.rows[0].id });
+  return res.status(201).send({ status: 201, message: 'Account successfully created', token });
 };
 
 export default createAccount;

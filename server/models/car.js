@@ -18,22 +18,27 @@ class Car {
   }
 
   async selectUserByid(id) {
-    const usr = await pool.query(`SELECT * FROM users WHERE id='${id}'`);
+    const usr = await pool.query(`SELECT * FROM users WHERE id=${id}`);
     return usr;
   }
 
   async getCarById(carId) {
-    const car = await pool.query(`SELECT * FROM cars WHERE car_id='${carId}'`);
+    const car = await pool.query(`SELECT * FROM cars WHERE car_id=${carId}`);
     return car;
   }
 
   async getCarOwner(owner) {
-    const car = await pool.query(`SELECT * FROM cars WHERE owner='${owner}'`);
+    const car = await pool.query(`SELECT * FROM cars WHERE owner=${owner}`);
     return car;
   }
 
-  async getUnsoldNew(state, status) {
-    const car = await pool.query(`SELECT * FROM cars WHERE state='${state}' AND status='${status}'`);
+  async getUnsold(status) {
+    const car = await pool.query(`SELECT * FROM cars WHERE status='${status}'`);
+    return car;
+  }
+
+  async updatePrice(price, carid, userid) {
+    const car = await pool.query(`UPDATE cars SET price=${price} WHERE car_id=${carid} AND owner=${userid} returning *;`);
     return car;
   }
 }
