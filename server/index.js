@@ -1,6 +1,7 @@
 import express from 'express';
 import PORT from './helpers/config';
 import userRouter from './routes/user';
+import carRouter from './routes/car';
 import Database from './controllers/db';
 
 const app = express();
@@ -16,9 +17,10 @@ app.get('/', (req, res) => {
 
 // api routes
 app.use('/api/v2/auth', userRouter);
+app.use('/api/v2', carRouter);
 
-// const db = new Database();
-// db.createAllTables();
+const db = new Database();
+db.createAllTables();
 
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));

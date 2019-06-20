@@ -4,19 +4,20 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import faker from 'faker';
 import app from '../server/index';
+import Bcrypt from '../server/helpers/bcrypt';
+import Auth from '../server/middleware/auth';
 
 chai.use(chaiHttp);
 
-
-describe('DATABASE', () => {
-  const email = faker.internet.email();
-  const userData = {
-    first_name: 'kayondo',
-    last_name: 'timothy',
-    password: '12345678',
-    email: `${email}`,
-    address: 'kigali, Rwanda',
-  };
+const email = faker.internet.email();
+const userData = {
+  first_name: 'kayondo',
+  last_name: 'timothy',
+  password: '12345678',
+  email: `${email}`,
+  address: 'kigali, Rwanda',
+};
+describe('USER', () => {
   const lgData = {
     password: '12345678',
     email: `${email}`,
@@ -56,6 +57,28 @@ describe('DATABASE', () => {
       .get('/')
       .end((err, res) => {
         expect(res.status).to.be.eq(200);
+      });
+  });
+});
+
+describe('CARS', () => {
+  const auth = new Auth();
+  const token = auth.createToken({ email: `${email}` });
+  const carData = {
+    state: 'used',
+    price: 500,
+    manufacturer: 'Tesla',
+    model: 'VB 2019',
+    body_type: 'car',
+  };
+  it('should create a car', () => {
+    chai.request(app)
+      .post('/api/v2/car')
+      .send(carData)
+      .set('Authorization', token)
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200);
+        expect(res.body).to.be('array');
       });
   });
 });

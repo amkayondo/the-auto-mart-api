@@ -2,12 +2,15 @@
 /* eslint-disable camelcase */
 import Joi from '@hapi/joi';
 import '@babel/polyfill';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Database from '../db';
+import Bcrypt from '../../helpers/bcrypt';
+import Auth from '../../middleware/auth';
 
 dotenv.config();
+
+const auth = new Auth();
+const bcrypt = new Bcrypt();
 
 const theSchema = {
   first_name: Joi.string().required(),
@@ -23,8 +26,7 @@ const createAccount = async (req, res) => {
     return res.status(400).json({ status: 400, error: result.error.details[0].message });
   }
 
-  const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-
+  const password = bcrypt.bcryptPassword(req.body.password);
   const values = [
     req.body.first_name,
     req.body.last_name,
@@ -36,8 +38,7 @@ const createAccount = async (req, res) => {
   try {
     const db = new Database();
     const user = await db.addUser(values);
-    console.log(user);
-    const token = jwt.sign({ email: req.body.email }, process.env.SECRETE_KEY, { expiresIn: '24hr' });
+    const token = auth.createToken({ email: req.body.email });
     return res.status(201).send({ status: 201, data: user.rows[0], token });
   } catch (error) {
     return res.status(400).send({ status: 400, error: error.detail });
