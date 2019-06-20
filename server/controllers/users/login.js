@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import Database from '../db';
 import Auth from '../../middleware/auth';
+import statusError from '../../helpers/errors';
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ const schema = {
 const loginUser = async (req, res) => {
   const result = Joi.validate(req.body, schema);
   if (result.error) {
-    return res.status(400).json({ status: 400, error: result.error.details[0].message });
+    return statusError();
   }
   const db = new Database();
   const u = await db.loginTheUser(req.body.email);
