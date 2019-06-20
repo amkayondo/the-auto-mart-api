@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import Joi from '@hapi/joi';
 import Car from '../../models/car';
-import statusError from '../../helpers/errors';
+
 
 const createCar = async (req, res) => {
   const schema = {
@@ -38,7 +38,7 @@ const createCar = async (req, res) => {
       data: car.rows[0],
     });
   } catch (error) {
-    return statusError();
+    return res.status(400).json({ status: 400, error: result.error.details[0].message });
   }
 };
 

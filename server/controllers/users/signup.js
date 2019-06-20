@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 import Database from '../db';
 import Bcrypt from '../../helpers/bcrypt';
 import Auth from '../../middleware/auth';
-import statusError from '../../helpers/errors';
 
 
 dotenv.config();
@@ -25,7 +24,7 @@ const theSchema = {
 const createAccount = async (req, res) => {
   const result = Joi.validate(req.body, theSchema);
   if (result.error) {
-    return statusError();
+    return res.status(400).json({ status: 400, error: result.error.details[0].message });
   }
 
   const password = bcrypt.bcryptPassword(req.body.password);
@@ -41,7 +40,7 @@ const createAccount = async (req, res) => {
     const db = new Database();
     const user = await db.addUser(values);
     const token = auth.createToken({ email: req.body.email });
-    return res.status(201).send({ status: 201, data: user.rows[0], token });
+    return res.status(201).send({ status: 201, message: 'Account successfully created', token });
   } catch (error) {
     return res.status(400).send({ status: 400, error: error.detail });
   }
