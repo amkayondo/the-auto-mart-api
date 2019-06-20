@@ -39,10 +39,10 @@ const createAccount = async (req, res) => {
   try {
     const db = new Database();
     const user = await db.addUser(values);
-    const token = auth.createToken({ email: req.body.email });
+    const token = auth.createToken({ email: req.body.email, id: user.rows.id });
     return res.status(201).send({ status: 201, message: 'Account successfully created', token });
   } catch (error) {
-    return res.status(400).send({ status: 400, error: error.detail });
+    return res.status(400).send({ status: 400, error: 'Something went wrong' });
   }
 };
 
