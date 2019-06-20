@@ -16,6 +16,11 @@ class Car {
     const usr = await pool.query(`SELECT * FROM users WHERE email='${email}'`);
     return usr;
   }
+
+  async getCarById(carId) {
+    const car = await pool.query(`SELECT * FROM cars WHERE car_id='${carId}'`);
+    return car;
+  }
 }
 
 
