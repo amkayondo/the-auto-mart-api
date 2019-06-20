@@ -17,6 +17,12 @@ class Car {
     return usr;
   }
 
+  async getAllCars() {
+    const usr = await pool.query('SELECT * FROM users');
+    return usr;
+  }
+
+
   async selectUserByid(id) {
     const usr = await pool.query(`SELECT * FROM users WHERE id=${id}`);
     return usr;
@@ -39,6 +45,11 @@ class Car {
 
   async updatePrice(price, carid, userid) {
     const car = await pool.query(`UPDATE cars SET price=${price} WHERE car_id=${carid} AND owner=${userid} returning *;`);
+    return car;
+  }
+
+  async getByrange(frange, srange) {
+    const car = await pool.query(`SELECT * FROM cars WHERE price >= ${frange} AND price <= ${srange}`);
     return car;
   }
 

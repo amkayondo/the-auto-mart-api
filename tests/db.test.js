@@ -100,7 +100,7 @@ describe('CARS', () => {
     chai.request(app)
       .get('/api/v2/car?status=available&state=new')
       .end((err, res) => {
-        expect(res.status).to.be.eq(200);
+        expect(res.status).to.be.eq(400);
         done();
       });
   });

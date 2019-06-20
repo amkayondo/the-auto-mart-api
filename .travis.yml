@@ -11,7 +11,6 @@ services:
 
 before_script:
   - psql -c 'create database auto_api;' -U postgres
-  - cross-env NODE_ENV=test ./node_modules/.bin/babel-node tables.js createAllTables
 script:
   - npm run test
 after_success:

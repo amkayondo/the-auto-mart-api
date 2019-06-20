@@ -6,6 +6,8 @@ import updateCarPrice from '../controllers/cars/update_car';
 import getAllnewUnsoldCars from '../controllers/cars/get_new_unsold_cars';
 import getUnsoldCars from '../controllers/cars/get_unsold_cars';
 import updateCarStatus from '../controllers/cars/update_status';
+import getCarsbyange from '../controllers/cars/get_car_by_range';
+
 
 const carRouter = express.Router();
 
@@ -17,5 +19,6 @@ carRouter.patch('/car/:carId/price', auth.auth, updateCarPrice);
 carRouter.get('/car', getAllnewUnsoldCars);
 carRouter.get('/car', getUnsoldCars);
 carRouter.patch('/car/:carId/status', auth.auth, updateCarStatus);
+carRouter.get('/car', getCarsbyange);
 
 export default carRouter;
