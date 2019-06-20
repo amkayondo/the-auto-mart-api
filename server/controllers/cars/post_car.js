@@ -6,8 +6,6 @@ import statusError from '../../helpers/errors';
 
 const createCar = async (req, res) => {
   const schema = {
-    // id: Joi.required(),
-    // status: Joi.string().min(3).required(),
     price: Joi.number().min(5).required(),
     manufacturer: Joi.string().max(30).required(),
     state: Joi.string().max(30).required(),
