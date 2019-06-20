@@ -31,7 +31,6 @@ describe('USER', () => {
       .post('api/v2/auth/signup')
       .send(userData)
       .end((err, res) => {
-        expect(res.body).to.be.a('array');
         expect(res.status).to.be.eq(201);
       });
   });
