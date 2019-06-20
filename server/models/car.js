@@ -41,6 +41,11 @@ class Car {
     const car = await pool.query(`UPDATE cars SET price=${price} WHERE car_id=${carid} AND owner=${userid} returning *;`);
     return car;
   }
+
+  async updateStatus(status, carid, userid) {
+    const car = await pool.query(`UPDATE cars SET status='${status}' WHERE car_id=${carid} AND owner=${userid} returning *;`);
+    return car;
+  }
 }
 
 
