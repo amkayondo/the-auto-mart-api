@@ -22,7 +22,6 @@ const createCar = async (req, res) => {
   const token = req.user;
   const { email } = token;
   const found = await db.selectUser(email);
-  console.log(found.rows[0].id);
   const newdata = [
     found.rows[0].id,
     req.body.state,
@@ -40,7 +39,6 @@ const createCar = async (req, res) => {
       data: car.rows[0],
     });
   } catch (error) {
-    console.log(error);
     return res.status(400).send({ status: 400, error: error.detail });
   }
 };
