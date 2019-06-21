@@ -48,6 +48,11 @@ class Car {
     return car;
   }
 
+  async getByrange(frange, srange) {
+    const car = await pool.query(`SELECT * FROM cars WHERE price >= ${frange} AND price <= ${srange}`);
+    return car;
+  }
+
   async updateStatus(status, carid, userid) {
     const car = await pool.query(`UPDATE cars SET status='${status}' WHERE car_id=${carid} AND owner=${userid} returning *;`);
     return car;
