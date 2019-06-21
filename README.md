@@ -77,6 +77,7 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 
 ## **ApI**
 [https://automart-one.herokuapp.com/api/v1/](https://automart-one.herokuapp.com/api/v1/)
+[https://automart-one.herokuapp.com/api/v2/](https://automart-one.herokuapp.com/api/v2/)
 
 ## **Author**
 **Kayondo Edward**
