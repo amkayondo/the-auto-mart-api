@@ -17,8 +17,23 @@ class Car {
     return usr;
   }
 
+  async selectUserByid(id) {
+    const usr = await pool.query(`SELECT * FROM users WHERE id='${id}'`);
+    return usr;
+  }
+
   async getCarById(carId) {
     const car = await pool.query(`SELECT * FROM cars WHERE car_id='${carId}'`);
+    return car;
+  }
+
+  async getCarOwner(owner) {
+    const car = await pool.query(`SELECT * FROM cars WHERE owner='${owner}'`);
+    return car;
+  }
+
+  async getUnsoldNew(state, status) {
+    const car = await pool.query(`SELECT * FROM cars WHERE state='${state}' AND status='${status}'`);
     return car;
   }
 }

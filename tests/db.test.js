@@ -85,6 +85,7 @@ describe('CARS', () => {
     model: 'VB 2019',
     body_type: 'car',
   };
+
   it('should create a car', (done) => {
     chai.request(app)
       .post('/api/v2/car')
@@ -92,6 +93,14 @@ describe('CARS', () => {
       .set('Authorization', `${Token}`)
       .end((err, res) => {
         expect(res.status).to.be.eq(400);
+        done();
+      });
+  });
+  it('should all new unsold cars', (done) => {
+    chai.request(app)
+      .get('/api/v2/car?status=available&state=new')
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200);
         done();
       });
   });
