@@ -3,6 +3,7 @@ import PORT from './helpers/config';
 import userRouter from './routes/user';
 import carRouter from './routes/car';
 import Database from './controllers/db';
+import adminRouter from './routes/admin';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 // api routes
 app.use('/api/v2/auth', userRouter);
 app.use('/api/v2', carRouter);
+app.use('/api/v2', adminRouter);
 
 const db = new Database();
 db.createAllTables();
